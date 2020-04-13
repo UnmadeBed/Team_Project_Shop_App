@@ -31,12 +31,21 @@ public class DataLoader implements ApplicationRunner {
 
         Customer cust1 = new Customer("turbo","12345","John","Doe","aa@bb.com","Somewhere");
         customerRepository.save(cust1);
-        Sneaker item1 = new Sneaker("Nike","001","/images/nike-air-jordan-1.jpg",10.00, 20.00,99.99);
+        Sneaker item1 = new Sneaker("Nike","001","/images/nike-air-jordan-1.jpg",10.00, 20.00,99.99,"male");
         sneakerRepository.save(item1);
-        Sneaker item2 = new Sneaker("Nike","043","/images/nike-air-jordan-2.jpg",9.00, 20.00,89.99);
+        Sneaker item2 = new Sneaker("Adidas","043","/images/nike-air-jordan-2.jpg",9.00, 20.00,89.99, "women");
         sneakerRepository.save(item2);
-        Sneaker item3 = new Sneaker("Nike","127","/images/nike-air-jordan-3.jpg",12.00, 20.00,79.99);
+        Sneaker item3 = new Sneaker("Nike","127","/images/nike-air-jordan-3.jpg",12.00, 20.00,79.99, "children");
         sneakerRepository.save(item3);
+
+
+        Sneaker item4 = new Sneaker("Converse","Xs2","/images/nike-air-jordan-1.jpg",8.00, 20.00,99.99,"male");
+        sneakerRepository.save(item4);
+        Sneaker item5 = new Sneaker("Adidas","043","/images/nike-air-jordan-2.jpg",4.00, 20.00,89.99, "children");
+        sneakerRepository.save(item5);
+        Sneaker item6 = new Sneaker("Nike","127","/images/nike-air-jordan-3.jpg",6.00, 20.00,79.99, "women");
+        sneakerRepository.save(item6);
+
 
         Order order1 = new Order("today",cust1,"no");
         orderRepository.save(order1);

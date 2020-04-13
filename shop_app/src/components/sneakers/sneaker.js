@@ -10,14 +10,14 @@ const Sneaker = (props) => {
 
   return (
     <Fragment>
-      <div className="component">
+
       <img src={props.sneaker.imgLink} alt="image" width="150" height="150"/>
       <h3>Brand: {props.sneaker.brand}</h3>
       <h5>Model: {props.sneaker.model}</h5>
       <h5>Size: {props.sneaker.size}</h5>
       <h5>Price: £{props.sneaker.retailPrice}</h5>
-      <button href={url}>Details</button>
-      </div>
+      <Link to={url}>Details</Link>
+
     </Fragment>
   )
 

@@ -35,6 +35,11 @@ class ShopContainer extends Component{
     this.handleClearFilter = this.handleClearFilter.bind(this);
     this.findSneakerById = this.findSneakerById.bind(this);
 
+    this.findAllSneakersByDeparment = this.findAllSneakersByDeparment.bind(this);
+    this.handleDepartmentClicked = this.handleDepartmentClicked.bind(this);
+    this.handleDepartmentClickedWomen = this.handleDepartmentClickedWomen.bind(this);
+    this.handleDepartmentClickedChildren = this.handleDepartmentClickedChildren.bind(this);
+    this.handleDepartmentClickedAll = this.handleDepartmentClickedAll.bind(this);
   }
 
   componentDidMount(){
@@ -109,6 +114,7 @@ handleClearFilter() {
   for (let i=0; i<filterBoxes.length; i++) {
     filterBoxes[i].selectedIndex = 0
   }
+  window.location = "/"
 }
 
 
@@ -122,6 +128,33 @@ handleLoginCustomer(even){
   this.setState({loggedInCustomer:even})
 }
 
+findAllSneakersByDeparment(department) {
+
+  const filteredSneakersByDepartment = this.state.sneakers.filter((sneaker) => {
+    return sneaker.department == department
+  })
+
+
+  this.setState({filteredSneakers: filteredSneakersByDepartment, filterIsOn: true});
+
+}
+
+
+handleDepartmentClicked(event) {
+  this.findAllSneakersByDeparment("male");
+}
+
+handleDepartmentClickedWomen(event) {
+  this.findAllSneakersByDeparment("women");
+}
+
+handleDepartmentClickedChildren(event) {
+  this.findAllSneakersByDeparment("children");
+}
+
+handleDepartmentClickedAll(event) {
+  this.setState({filteredSneakers: [], filterIsOn: false})
+}
 
 
   render(){
@@ -141,29 +174,34 @@ handleLoginCustomer(even){
     // })
 
 
-    let filteredItems = [];
-    if (this.state.filteredSneakers.length > 0) {
+    // let filteredItems = [];
+    // if (this.state.filteredSneakers.length > 0) {
+    //
+    //   filteredItems = this.state.filteredSneakers.map((sneaker, index) =>{
+    //   return(
+    //     <li key={index} className="component-item">
+    //       <div className="component">
+    //         <img src={sneaker.imgLink} alt="image" width="150" height="150"/>
+    //         <h3>Brand: {sneaker.brand}</h3>
+    //         <h5>Model: {sneaker.model}</h5>
+    //         <h5>Size: {sneaker.size}</h5>
+    //         <h5>Price: £{sneaker.retailPrice}</h5>
+    //       </div>
+    //     </li>
+    //   )
+    //   })
+    // }
 
-      filteredItems = this.state.filteredSneakers.map((sneaker, index) =>{
-      return(
-        <li key={index} className="component-item">
-          <div className="component">
-            <img src={sneaker.imgLink} alt="image" width="150" height="150"/>
-            <h3>Brand: {sneaker.brand}</h3>
-            <h5>Model: {sneaker.model}</h5>
-            <h5>Size: {sneaker.size}</h5>
-            <h5>Price: £{sneaker.retailPrice}</h5>
-          </div>
-        </li>
-      )
-      })
-    }
-
-
+// allSneakersClicked
     return(
       <Router>
         <Fragment>
-          <NavBar name={this.state.loginName}/>
+          <NavBar name={this.state.loginName}
+                  menDepartmentClicked={this.handleDepartmentClicked}
+                  womenDepartmentClicked={this.handleDepartmentClickedWomen}
+                  kidDepartmentClicked={this.handleDepartmentClickedChildren}
+                  allSneakersClicked={this.handleDepartmentClickedAll}
+                  />
 
           <Filter
           sneakers={this.state.sneakers} onFilterChangeBrand={this.handleFilterChangeBrand}
@@ -173,33 +211,79 @@ handleLoginCustomer(even){
           filter={this.state.filterIsOn}
           filteredSneakers={this.state.filteredSneakers}/>
 
-          <ul className="component-list">
-          </ul>
-
 
             <Switch>
-            <Route path="/login" render={(props)=>{
-              return<LoginForm onLogin={this.handleLoginNameChange} onLoginCustomer={this.handleLoginCustomer} />
-            }}/>
-            <Route path="/men" component={Men} />
-            <Route path="/women" component={Women} />
-            <Route path="/kids" component={Kids} />
-            <Route path="/newreleases" component={NewReleases} />
-            <Route path="/sale" component={Sale} />
+
+
             <Route exact path='/sneakers/:id' render = {(props) =>
             {
               const id = props.match.params.id;
               const sneaker = this.findSneakerById(id)
               return <SneakerDetail sneaker = {sneaker}/>
             }}/>
-            <Route path='/' render = {(props) => {
-              return <SneakerList sneakers = {this.state.sneakers}/>
+
+
+            <Route path="/login" render={(props)=>{
+              return<LoginForm onLogin={this.handleLoginNameChange} onLoginCustomer={this.handleLoginCustomer} />
+            }}/>
+
+
+            <Route path="/men" render={(props)=> {
+              // from sneakers, select all the sneakers that have men department,
+              // and set the state of FilteredSneakers, and the filter to On.
+              // const foundSneakers = this.findAllSneakersByDeparment("men");
+                return <SneakerList
+                          sneakers = {this.state.sneakers}
+                          filteredSneakers = {this.state.filteredSneakers}
+                          filterIsOn = {this.state.filterIsOn}
+                        />
+
             }} />
+
+
+            <Route path="/women" render={(props) => {
+              return <SneakerList
+                        sneakers = {this.state.sneakers}
+                        filteredSneakers = {this.state.filteredSneakers}
+                        filterIsOn = {this.state.filterIsOn}
+                      />
+            }} />
+
+
+            <Route path="/kids" render={(props) => {
+              return <SneakerList
+                        sneakers = {this.state.sneakers}
+                        filteredSneakers = {this.state.filteredSneakers}
+                        filterIsOn = {this.state.filterIsOn}
+                      />
+            }} />
+
+
+            <Route path="/newreleases" component={NewReleases} />
+
+
+            <Route path="/sale" component={Sale} />
+
+            <Route path='/' render = {(props) => {
+              // all sneakers
+              return <SneakerList
+                      sneakers = {this.state.sneakers}
+                      filteredSneakers = {this.state.filteredSneakers}
+                      filterIsOn = {this.state.filterIsOn}
+                      />
+            }} />
+
             </Switch>
         </Fragment>
       </Router>
     )
   }
 }
+
+
+
+
+
+
 
 export default ShopContainer;
