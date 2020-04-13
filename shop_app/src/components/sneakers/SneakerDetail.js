@@ -12,9 +12,18 @@ class SneakerDetail extends Component {
     }
     return (
       <div className='component'>
-        <Sneaker sneaker = {this.props.sneaker} />
-        <button>
-        Purchase
+
+        <img src={this.props.sneaker.imgLink} alt="image" width="350" height="350"/>
+
+        <div>
+          <h3>Brand: {this.props.sneaker.brand}</h3>
+          <h3>Model: {this.props.sneaker.model}</h3>
+          <h3>Size: {this.props.sneaker.size}</h3>
+          <h3>Price: £{this.props.sneaker.retailPrice}</h3>
+        </div>
+
+        <button value={this.props.sneaker.id} onClick={this.props.addToBasket}>
+        Add to basket
         </button>
       </div>
     )
@@ -22,3 +31,4 @@ class SneakerDetail extends Component {
 }
 
 export default SneakerDetail;
+// <Sneaker sneaker = {this.props.sneaker} />

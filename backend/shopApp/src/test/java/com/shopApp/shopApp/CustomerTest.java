@@ -33,7 +33,7 @@ public class CustomerTest {
 //        StockItem item1 = new StockItem("some","some",20.00, 30.00);
 
 //      order
-        Order order1 = new Order("today",cust1,"NO");
+        Order order1 = new Order(cust1,"NO");
 
 //        order detail
 //        OrderDetail order1_detail = new OrdrDetail(item1, 10, order1);

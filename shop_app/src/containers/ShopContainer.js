@@ -12,6 +12,8 @@ import SneakerList from '../components/sneakers/SneakerList';
 import SneakerDetail from '../components/sneakers/SneakerDetail';
 
 import Filter from "./Filter";
+import Basket from "../components/basket/Basket.js";
+
 
 class ShopContainer extends Component{
   constructor(props){
@@ -23,7 +25,8 @@ class ShopContainer extends Component{
       customers: [],
       orders: [],
       loginName: 'Login',
-      loggedInCustomer:''
+      loggedInCustomer:'',
+      basket: []
     }
 
     this.handleLoginNameChange = this.handleLoginNameChange.bind(this)
@@ -40,6 +43,10 @@ class ShopContainer extends Component{
     this.handleDepartmentClickedWomen = this.handleDepartmentClickedWomen.bind(this);
     this.handleDepartmentClickedChildren = this.handleDepartmentClickedChildren.bind(this);
     this.handleDepartmentClickedAll = this.handleDepartmentClickedAll.bind(this);
+
+    // basket
+    this.handleAddToBasket = this.handleAddToBasket.bind(this);
+    this.handlePurchase = this.handlePurchase.bind(this);
   }
 
   componentDidMount(){
@@ -157,42 +164,62 @@ handleDepartmentClickedAll(event) {
 }
 
 
+handleAddToBasket(event) {
+
+  // const sneakerOriginalState = this.findSneakerById(event.target.value);
+  const sneakerFound = this.findSneakerById(event.target.value);
+
+  this.setState({basket: [...this.state.basket, sneakerFound]});
+
+}
+
+
+
+
+
+
+// -------------------------------------------------------------------------
+handlePurchase(event) {
+
+  // a list of items
+  // customer object
+
+
+  const orderToPost = {
+    isCompleted: "yes",
+    customer: this.state.loggedInCustomer
+  }
+
+  const request = new Request();
+  const orderPromise = request.post("/api/orders", orderToPost)
+  .then((data) => {
+    console.log(data);
+  })
+
+
+  // const ordersPromise = request.get("/api/customers")
+  //
+  // Promise.all([sneakersPromise, customersPromise,ordersPromise])
+  // .then((data)=>{
+  //   this.setState({
+  //     sneakers: data[0],
+  //     customers: data[1],
+  //     orders: data[2]
+  //
+  //   })
+  // })
+
+
+
+
+}
+
+// -------------------------------------------------------------------------
+
+
+
   render(){
 
-    // const allItems = this.state.sneakers.map((sneaker, index) =>{
-    //   return(
-    //     <li key={index} className="component-item">
-    //     <div className="component">
-    //     <img src={sneaker.imgLink} alt="image" width="150" height="150"/>
-    //     <h3>Brand: {sneaker.brand}</h3>
-    //     <h5>Model: {sneaker.model}</h5>
-    //     <h5>Size: {sneaker.size}</h5>
-    //     <h5>Price: £{sneaker.retailPrice}</h5>
-    //     </div>
-    //     </li>
-    //   )
-    // })
-
-
-    // let filteredItems = [];
-    // if (this.state.filteredSneakers.length > 0) {
-    //
-    //   filteredItems = this.state.filteredSneakers.map((sneaker, index) =>{
-    //   return(
-    //     <li key={index} className="component-item">
-    //       <div className="component">
-    //         <img src={sneaker.imgLink} alt="image" width="150" height="150"/>
-    //         <h3>Brand: {sneaker.brand}</h3>
-    //         <h5>Model: {sneaker.model}</h5>
-    //         <h5>Size: {sneaker.size}</h5>
-    //         <h5>Price: £{sneaker.retailPrice}</h5>
-    //       </div>
-    //     </li>
-    //   )
-    //   })
-    // }
-
-// allSneakersClicked
     return(
       <Router>
         <Fragment>
@@ -219,8 +246,9 @@ handleDepartmentClickedAll(event) {
             {
               const id = props.match.params.id;
               const sneaker = this.findSneakerById(id)
-              return <SneakerDetail sneaker = {sneaker}/>
+              return <SneakerDetail sneaker = {sneaker} addToBasket={this.handleAddToBasket}/>
             }}/>
+
 
 
             <Route path="/login" render={(props)=>{
@@ -263,6 +291,20 @@ handleDepartmentClickedAll(event) {
 
 
             <Route path="/sale" component={Sale} />
+
+
+            <Route path="/basket" render={(props) => {
+              // customer
+              // array of items - basket
+              // handle purchase
+              return <Basket
+                        customer={this.state.loggedInCustomer}
+                        basket={this.state.basket}
+                        handlePurchase={this.handlePurchase}
+                      />
+            }} />
+
+
 
             <Route path='/' render = {(props) => {
               // all sneakers

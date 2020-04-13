@@ -47,7 +47,7 @@ public class DataLoader implements ApplicationRunner {
         sneakerRepository.save(item6);
 
 
-        Order order1 = new Order("today",cust1,"no");
+        Order order1 = new Order(cust1,"no");
         orderRepository.save(order1);
         order1.addSneaker(item1);
         order1.addSneaker(item1);

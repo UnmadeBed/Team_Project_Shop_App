@@ -64,6 +64,11 @@ class NavBar extends Component {
             <li className="navLink">
               <Link to="/login">{this.props.name}</Link>
             </li>
+
+            <li className="navLink">
+              <Link to="/basket">Basket</Link>
+            </li>
+
           </ul>
 
         </header>

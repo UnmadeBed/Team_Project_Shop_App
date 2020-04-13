@@ -17,10 +17,11 @@ const Sneaker = (props) => {
       <h5>Size: {props.sneaker.size}</h5>
       <h5>Price: £{props.sneaker.retailPrice}</h5>
       <Link to={url}>Details</Link>
-
     </Fragment>
   )
 
 }
+
+
 
 export default Sneaker;

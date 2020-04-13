@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Order {
     private Long id;
 
     @Column(name = "date")
-    private String date;
+    private LocalDate date;
 
     @Column(name = "is_completed")
     private String isCompleted;
@@ -45,8 +46,8 @@ public class Order {
 
 
 
-    public Order(String date, Customer customer,String isCompleted) {
-        this.date = date;
+    public Order(Customer customer,String isCompleted) {
+        this.date = LocalDate.now();
         this.customer = customer;
         this.isCompleted = isCompleted;
         this.sneakers = new ArrayList<>();
@@ -67,11 +68,11 @@ public class Order {
         this.id = id;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
