@@ -38,6 +38,17 @@ class NavBar extends Component {
 
 
     render() {
+
+      let mydetails = null
+      if(this.props.customer){
+          mydetails =
+
+          <li className="navLink">
+            <Link to="/mydetails" onClick={this.props.handleAllDetails}>My Details</Link>
+          </li>
+      }
+
+
       return(
         <header className="NavBar">
           <ul>
@@ -59,15 +70,13 @@ class NavBar extends Component {
               <Link to="/newreleases">New Releases</Link>
             </li>
             <li className="navLink">
-              <Link to="/sale">Sale</Link>
-            </li>
-            <li className="navLink">
               <Link to="/login">{this.props.name}</Link>
             </li>
 
             <li className="navLink">
               <Link to="/basket">Basket</Link>
             </li>
+            {mydetails}
 
           </ul>
 
