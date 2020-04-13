@@ -29,6 +29,7 @@ const NavBar = (props) =>{
           <Link to="/login">{props.name}</Link>
         </li>
       </ul>
+
     </header>
   )
 
