@@ -8,6 +8,8 @@ import Kids from "../components/Kids";
 import NewReleases from "../components/NewReleases";
 import Sale from "../components/Sale";
 import LoginForm from '../components/login/LoginForm';
+import SneakerList from '../components/sneakers/SneakerList';
+import SneakerDetail from '../components/sneakers/SneakerDetail';
 
 import Filter from "./Filter";
 
@@ -31,6 +33,7 @@ class ShopContainer extends Component{
     this.handleFilterChangeBrand = this.handleFilterChangeBrand.bind(this);
     this.handleFilterChangeSize= this.handleFilterChangeSize.bind(this);
     this.handleClearFilter = this.handleClearFilter.bind(this);
+    this.findSneakerById = this.findSneakerById.bind(this);
 
   }
 
@@ -48,6 +51,12 @@ class ShopContainer extends Component{
         orders: data[2]
 
       })
+    })
+  }
+
+  findSneakerById(id) {
+    return this.state.sneakers.find((sneaker) => {
+      return sneaker.id === parseInt(id)
     })
   }
 
@@ -117,19 +126,19 @@ handleLoginCustomer(even){
 
   render(){
 
-    const allItems = this.state.sneakers.map((sneaker, index) =>{
-      return(
-        <li key={index} className="component-item">
-        <div className="component">
-        <img src={sneaker.imgLink} alt="image" width="150" height="150"/>
-        <h3>Brand: {sneaker.brand}</h3>
-        <h5>Model: {sneaker.model}</h5>
-        <h5>Size: {sneaker.size}</h5>
-        <h5>Price: £{sneaker.retailPrice}</h5>
-        </div>
-        </li>
-      )
-    })
+    // const allItems = this.state.sneakers.map((sneaker, index) =>{
+    //   return(
+    //     <li key={index} className="component-item">
+    //     <div className="component">
+    //     <img src={sneaker.imgLink} alt="image" width="150" height="150"/>
+    //     <h3>Brand: {sneaker.brand}</h3>
+    //     <h5>Model: {sneaker.model}</h5>
+    //     <h5>Size: {sneaker.size}</h5>
+    //     <h5>Price: £{sneaker.retailPrice}</h5>
+    //     </div>
+    //     </li>
+    //   )
+    // })
 
 
     let filteredItems = [];
@@ -165,7 +174,6 @@ handleLoginCustomer(even){
           filteredSneakers={this.state.filteredSneakers}/>
 
           <ul className="component-list">
-            {this.state.filterIsOn ? filteredItems :allItems}
           </ul>
 
 
@@ -178,6 +186,15 @@ handleLoginCustomer(even){
             <Route path="/kids" component={Kids} />
             <Route path="/newreleases" component={NewReleases} />
             <Route path="/sale" component={Sale} />
+            <Route exact path='/sneakers/:id' render = {(props) =>
+            {
+              const id = props.match.params.id;
+              const sneaker = this.findSneakerById(id)
+              return <SneakerDetail sneaker = {sneaker}/>
+            }}/>
+            <Route path='/' render = {(props) => {
+              return <SneakerList sneakers = {this.state.sneakers}/>
+            }} />
             </Switch>
         </Fragment>
       </Router>
