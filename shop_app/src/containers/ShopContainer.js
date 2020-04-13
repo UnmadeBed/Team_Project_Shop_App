@@ -100,8 +100,9 @@ class ShopContainer extends Component{
       const request = new Request();
       const id = this.state.loggedInCustomer.id
       console.log(id);
-      request.get('/api/customer/'+ id)
+      request.get('/api/customers/'+ id)
       .then((data)=>{
+
         this.setState({loggedInCustomer: data})
       })
 
