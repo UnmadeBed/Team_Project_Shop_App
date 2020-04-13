@@ -25,6 +25,14 @@ public class CustomerController {
         return new ResponseEntity<>(customerRepository.findById(id), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/customers/login")
+    public ResponseEntity findBydUsernameAndPassword(
+            @RequestParam(name = "userName") String userName,
+            @RequestParam(name= "password")String password){
+        return new ResponseEntity(customerRepository.findByUserNameAndPassword(userName, password), HttpStatus.OK);
+    }
+
+
     @PostMapping(value = "/customers")
     public ResponseEntity<Customer> postCustomer(@RequestBody Customer customer){
         customerRepository.save(customer);

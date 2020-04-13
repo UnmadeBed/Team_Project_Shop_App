@@ -7,6 +7,7 @@ import Women from "../components/Women";
 import Kids from "../components/Kids";
 import NewReleases from "../components/NewReleases";
 import Sale from "../components/Sale";
+import LoginForm from '../components/login/LoginForm';
 
 
 class ShopContainer extends Component{
@@ -15,8 +16,12 @@ class ShopContainer extends Component{
     this.state = {
       sneakers:[],
       customers: [],
-      orders: []
+      orders: [],
+      loginName: 'Login',
+      loggedInCustomer:''
     }
+this.handleLoginNameChange = this.handleLoginNameChange.bind(this)
+this.handleLoginCustomer = this.handleLoginCustomer.bind(this)
 
   }
 
@@ -32,12 +37,20 @@ class ShopContainer extends Component{
         sneakers: data[0],
         customers: data[1],
         orders: data[2]
+
       })
     })
 
   }
 
+handleLoginNameChange(even){
 
+  this.setState({loginName: even})
+}
+handleLoginCustomer(even){
+  console.log(even);
+  this.setState({loggedInCustomer:even})
+}
 
 
 
@@ -60,8 +73,11 @@ class ShopContainer extends Component{
     return(
       <Router>
         <Fragment>
-          <NavBar />
+          <NavBar name={this.state.loginName}/>
             <Switch>
+            <Route path="/login" render={(props)=>{
+              return<LoginForm onLogin={this.handleLoginNameChange} onLoginCustomer={this.handleLoginCustomer} />
+            }}/>
             <Route path="/men" component={Men} />
             <Route path="/women" component={Women} />
             <Route path="/kids" component={Kids} />

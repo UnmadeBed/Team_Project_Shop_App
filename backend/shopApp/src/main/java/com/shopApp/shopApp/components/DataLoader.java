@@ -29,7 +29,7 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) {
 
-        Customer cust1 = new Customer("turbo","bbb","John","Doe","aa@bb.com","Somewhere");
+        Customer cust1 = new Customer("turbo","12345","John","Doe","aa@bb.com","Somewhere");
         customerRepository.save(cust1);
         Sneaker item1 = new Sneaker("Nike","001","/images/nike-air-jordan-1.jpg",10.00, 20.00,99.99);
         sneakerRepository.save(item1);
