@@ -14,6 +14,7 @@ class LoginForm extends Component{
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    
   }
 
   componentDidMount(){
@@ -39,8 +40,16 @@ handleSubmit(event){
     this.props.onLoginCustomer(this.state.customer)
     this.props.onLogin(this.state.login.userName)
   })
+<<<<<<< HEAD
+=======
+
+  this.props.onLogin(this.state.login.userName)
+
+>>>>>>> feature/emailconf
 
 }
+
+
   render(){
 
 

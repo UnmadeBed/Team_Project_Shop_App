@@ -11,11 +11,16 @@ class SneakerDetail extends Component {
       return "Loading..."
     }
     return (
-      <div className='sneaker-details'>
-
-        <div className='sneaker-details-img-container'>
-          <img className='sneaker-details-img' src={this.props.sneaker.imgLink} alt="image"/>
+      <div className='component'>
+        <div>
+          <h3>Brand: {this.props.sneaker.brand}</h3>
+          <h3>Model: {this.props.sneaker.model}</h3>
+          <h3>Size: {this.props.sneaker.size}</h3>
+          <h3>Price: £{this.props.sneaker.retailPrice}</h3>
         </div>
+        <img src={this.props.sneaker.imgLink} alt="image" width="350" height="350"/>
+        <img src={this.props.sneaker.img2} alt="image" width="350" height="350"/>
+        <img src={this.props.sneaker.img3} alt="image" width="350" height="350"/>
 
         <div className='details-box'>
         <h1>Details</h1>

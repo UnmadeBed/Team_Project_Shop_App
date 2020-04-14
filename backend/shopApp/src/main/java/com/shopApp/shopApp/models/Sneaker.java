@@ -24,6 +24,12 @@ public class Sneaker {
     @Column(name = "image_link")
     private String imgLink;
 
+    @Column(name = "image_link2")
+    private String img2;
+
+    @Column(name = "image_link3")
+    private String img3;
+
     @Column(name = "stock_price")
     private Double stockPrice;
 
@@ -34,7 +40,7 @@ public class Sneaker {
     private String department;
 
 
-    public Sneaker(String brand,String model, String imgLink,Double size, Double stockPrice, Double retailPrice, String department){
+    public Sneaker(String brand,String model, String imgLink,Double size, Double stockPrice, Double retailPrice, String department,String img2,String img3){
         this.brand = brand;
         this.model = model;
         this.size = size;
@@ -42,12 +48,28 @@ public class Sneaker {
         this.stockPrice = stockPrice;
         this.retailPrice = retailPrice;
         this.department = department;
+        this.img2 = img2;
+        this.img3 = img3;
     }
 
     public Sneaker() {
     }
 
+    public String getImg2() {
+        return img2;
+    }
 
+    public void setImg2(String img2) {
+        this.img2 = img2;
+    }
+
+    public String getImg3() {
+        return img3;
+    }
+
+    public void setImg3(String img3) {
+        this.img3 = img3;
+    }
 
     public Long getId() {
         return id;

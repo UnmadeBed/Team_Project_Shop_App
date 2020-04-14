@@ -157,7 +157,7 @@ class ShopContainer extends Component{
     }
     handleLoginCustomer(even){
       console.log(even);
-      debugger;
+    
       this.setState({loggedInCustomer: even})
 
     }
