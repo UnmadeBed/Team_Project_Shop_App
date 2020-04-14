@@ -45,10 +45,9 @@ class Filter extends Component {
 
     return(
 
-      <div>
-        <button onClick={this.props.onClearFilter}>Clear filter</button>
+      <div className="filter">
 
-      // price..?
+
         <BrandSelect
         filteredSneakers={this.props.filteredSneakers}
         sneakers={this.props.sneakers}
@@ -70,6 +69,7 @@ class Filter extends Component {
          onSizeSelect={this.onSizeSelect}
          />
 
+         <button className="filter-clear-filter" onClick={this.props.onClearFilter}>Clear filter</button>
       </div>
 
     )

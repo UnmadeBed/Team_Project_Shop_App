@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import NavBar from '../NavBar.js';
 import Request from "../helpers/request";
 import Men from "../components/Men";
@@ -10,11 +11,12 @@ import Sale from "../components/Sale";
 import LoginForm from '../components/login/LoginForm';
 import SneakerList from '../components/sneakers/SneakerList';
 import SneakerDetail from '../components/sneakers/SneakerDetail';
-import Moment from 'react-moment';
-import 'moment-timezone';
 import Filter from "./Filter";
 import Basket from "../components/basket/Basket.js";
 import MyDetails from '../components/mydetails/MyDetails';
+
+// css
+import Navbar from 'react-bootstrap/Navbar';
 
 
 class ShopContainer extends Component{
@@ -57,9 +59,6 @@ class ShopContainer extends Component{
 
 
     componentDidMount(){
-
-
-
 
       const request = new Request();
       const sneakersPromise = request.get('/api/sneakers')
@@ -138,12 +137,13 @@ class ShopContainer extends Component{
 
 
     handleClearFilter() {
-      this.setState({filterIsOn: false});
+      this.setState({filterIsOn: false, filteredSneakers: []});
       let filterBoxes = document.getElementsByClassName('filter-select');
       for (let i=0; i<filterBoxes.length; i++) {
         filterBoxes[i].selectedIndex = 0
       }
-      window.location = "/"
+      // window.location = "/"
+      return <Redirect  to="/" />
     }
 
 
@@ -151,10 +151,13 @@ class ShopContainer extends Component{
     handleLoginNameChange(even){
 
       this.setState({loginName: even})
+
     }
     handleLoginCustomer(even){
       console.log(even);
-      this.setState({loggedInCustomer:even})
+      debugger;
+      this.setState({loggedInCustomer: even})
+
     }
 
     findAllSneakersByDeparment(department) {
@@ -196,10 +199,6 @@ class ShopContainer extends Component{
     }
 
 
-
-
-
-
     // -------------------------------------------------------------------------
     handlePurchase(event) {
 
@@ -232,33 +231,16 @@ class ShopContainer extends Component{
 
       })
 
-
-      // const ordersPromise = request.get("/api/customers")
-      //
-      // Promise.all([sneakersPromise, customersPromise,ordersPromise])
-      // .then((data)=>{
-      //   this.setState({
-      //     sneakers: data[0],
-      //     customers: data[1],
-      //     orders: data[2]
-      //
-      //   })
-      // })
-
-
-
-
     }
-
-    // -------------------------------------------------------------------------
-
-
 
     render(){
 
       return(
+
         <Router>
+
         <Fragment>
+
         <NavBar name={this.state.loginName}
         menDepartmentClicked={this.handleDepartmentClicked}
         womenDepartmentClicked={this.handleDepartmentClickedWomen}
@@ -280,7 +262,7 @@ class ShopContainer extends Component{
         <Switch>
 
 
-        <Route exact path='/sneakers/:id' render = {(props) =>
+        <Route path='/sneakers/:id' render = {(props) =>
           {
             const id = props.match.params.id;
             const sneaker = this.findSneakerById(id)
@@ -288,10 +270,35 @@ class ShopContainer extends Component{
           }}/>
 
 
-
           <Route path="/login" render={(props)=>{
-            return<LoginForm onLogin={this.handleLoginNameChange} onLoginCustomer={this.handleLoginCustomer} />
+
+              return(
+                this.state.loggedInCustomer ? (<Redirect  to="/" />) : <LoginForm onLogin={this.handleLoginNameChange} onLoginCustomer={this.handleLoginCustomer} />
+              )
+
           }}/>
+
+
+          <Route path="/basket" render={(props) => {
+            // customer
+            // array of items - basket
+            // handle purchase
+            return <Basket
+            customer={this.state.loggedInCustomer}
+            basket={this.state.basket}
+            handlePurchase={this.handlePurchase}
+            />
+          }} />
+
+          <Route path="/mydetails" render={(props)=>{
+            return <MyDetails
+            customer={this.state.loggedInCustomer}
+
+            />
+          }}/>
+
+
+
 
 
           <Route path="/men" render={(props)=> {
@@ -305,7 +312,6 @@ class ShopContainer extends Component{
             />
 
           }} />
-
 
           <Route path="/women" render={(props) => {
             return <SneakerList
@@ -323,51 +329,6 @@ class ShopContainer extends Component{
             filterIsOn = {this.state.filterIsOn}
             />
           }} />
-
-
-          <Route path="/newreleases" component={NewReleases} />
-
-
-          <Route path="/sale" component={Sale} />
-
-
-
-
-
-
-
-
-          <Route path="/basket" render={(props) => {
-            // customer
-            // array of items - basket
-            // handle purchase
-            return <Basket
-            customer={this.state.loggedInCustomer}
-            basket={this.state.basket}
-            handlePurchase={this.handlePurchase}
-            />
-          }} />
-          <Route path="/mydetails" render={(props)=>{
-            return <MyDetails
-            customer={this.state.loggedInCustomer}
-
-            />
-          }}/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
           <Route path='/' render = {(props) => {

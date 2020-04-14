@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
 
-
 class MyDetails extends Component{
   constructor(props) {
     super(props);
@@ -9,19 +8,7 @@ class MyDetails extends Component{
 
 
   render(){
-  if(this.props.customer){
-    const orders = this.props.customer.orders.sneakers.map((order, index)=>{
 
-      return(
-
-        <li>
-        <h2>{order.id}</h2>
-        <h2>{order.date}</h2>
-        <img src={order.imgLink}/>
-        </li>
-      )
-    })
-  }
 
     return(
       <div>
@@ -30,12 +17,6 @@ class MyDetails extends Component{
       </div>
     )
   }
-
-
-
-
-
-
 
 }
 

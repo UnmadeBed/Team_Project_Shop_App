@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Redirect} from 'react';
 // import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Request from '../../helpers/request.js';
 
@@ -37,18 +37,17 @@ handleSubmit(event){
   .then((data)=>{
     this.setState({customer: data})
     this.props.onLoginCustomer(this.state.customer)
+    this.props.onLogin(this.state.login.userName)
   })
-  
-  this.props.onLogin(this.state.login.userName)
-
 
 }
   render(){
 
 
-
     return(
+
       <div>
+
       <form onSubmit={this.handleSubmit}>
       <h2>User Name</h2>
       <input type="text" placeholder="user name" name="userName" onChange={this.handleChange} value={this.state.userName}/>
