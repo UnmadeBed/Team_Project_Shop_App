@@ -9,19 +9,25 @@ class MyDetails extends Component{
 
 
   render(){
-  /*  const customer = this.props.customer
-    const orders = customer.orders.map((order, index)=>{
+  if(this.props.customer){
+    const orders = this.props.customer.orders.sneakers.map((order, index)=>{
+
       return(
+
         <li>
         <h2>{order.id}</h2>
         <h2>{order.date}</h2>
         <img src={order.imgLink}/>
         </li>
       )
-    })*/
+    })
+  }
 
     return(
+      <div>
       <p>This is My Details </p>
+
+      </div>
     )
   }
 
