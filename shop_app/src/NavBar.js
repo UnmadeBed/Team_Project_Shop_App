@@ -64,7 +64,7 @@ class NavBar extends Component {
 
       return(
 
-        <Navbar className="navigation-bar" bg="light" expand="lg">
+        <Navbar sticky="top" className="navigation-bar" bg="light" expand="lg">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">

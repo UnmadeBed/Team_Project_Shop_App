@@ -17,6 +17,16 @@ body {
   box-sizing: border-box;
 }
 
+.main-container {
+  background-color: rgba(19, 241, 55, 0.3);
+
+
+  background-image: linear-gradient(to right bottom, rgb(46, 171, 6, 0.6), rgb(195, 56, 156, 0.5)), url('../images/sneakers_bckgrnd.jpg');
+
+  background-size: cover;
+  background-position: center;
+}
+
 
 /* overriding default bootstraps styling */
 .navigation-bar {
@@ -29,6 +39,10 @@ body {
   padding-right: 2rem !important;
 }
 
+.details-box-text {
+  padding-bottom: 2rem;
+}
+
 
 /* sneaker details */
 .sneaker-details {
@@ -36,7 +50,9 @@ body {
   margin: auto;
   text-align: center;
   padding-top: 3rem;
+  padding-bottom: 3rem;
   display: flex;
+  align-items: center;
 }
 
 .sneaker-details-img-container {
@@ -46,14 +62,16 @@ body {
 }
 
 .sneaker-details-img {
-  width:70%;
+  width:100%;
+
 }
 
 .details-box {
   width: 50%;
+  text-align: left;
+  padding-left: 8rem;
+
 }
-
-
 
 
 
@@ -62,6 +80,11 @@ body {
   padding-top: 1rem;
   display: flex;
   justify-content: space-around;
+  background-color: #f8f9fa;
+  position: fixed;
+  width: 100%;
+  padding-bottom: 4rem;
+
 }
 
 .filter-select {
@@ -73,7 +96,7 @@ body {
 /* add media query to reduce button size */
 .filter-clear-filter {
   display: block;
-	font-size: 1.6rem;
+	font-size: 1.3rem;
 	font-family: sans-serif;
 	font-weight: 700;
 	color: #444;
@@ -97,7 +120,7 @@ body {
 
 .filter-select {
 	display: block;
-	font-size: 1.6rem;
+	font-size: 1.3rem;
 	font-family: sans-serif;
 	font-weight: 700;
 	color: #444;
@@ -138,24 +161,11 @@ body {
 }
 
 
-
-
-/* .NavBar{
-  background: black;
-  margin: 20px;
-  padding: 10px;
-
-
+.footer {
+  height: 30vh;
+  background-color: #f8f9fa;
 }
-.navLink {
-  background: white;
-    margin: 10px;
-    padding: 23px;
-    width: 300px;
-    display: inline;
-    border: 1px solid black;
 
-} */
 
 .component {
   margin: 20px;
@@ -167,12 +177,12 @@ body {
   flex-wrap: wrap;
   display: inline-block;
 }
-ul.component-list {
-  display: inline;
-  flex-wrap: wrap;
-  width: 100px;
 
 
+
+
+.component-list {
+  margin-top: 10rem;
 }
 
 li.component-item {

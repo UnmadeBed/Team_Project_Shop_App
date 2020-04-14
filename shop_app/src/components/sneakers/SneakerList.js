@@ -30,14 +30,23 @@ const SneakerList = (props) => {
     })
   }
 
-
+  // if (props.sneakers.length === 0) {
+  //   return (<p>Loading...</p>)
+  //
+  // }
+  // const sneakers = props.sneakers.map((sneaker, index) => {
+  //   return (
+  //     <li key = {index} className="component-item">
+  //     <div className="component">
+  //       <Sneaker sneaker = {sneaker}/>
+  //     </div>
+  //     </li>
+  //   )
+  // })
   return (
-    <div>
-      <ul className="sneakers-list">
-      {props.filterIsOn ? filteredItems : allItems}
-      </ul>
-    </div>
-
+    <ul className="component-list">
+    {props.filterIsOn ? filteredItems : allItems}
+    </ul>
   )
 }
 

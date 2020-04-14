@@ -157,7 +157,7 @@ class ShopContainer extends Component{
     }
     handleLoginCustomer(even){
       console.log(even);
-    
+
       this.setState({loggedInCustomer: even})
 
     }
@@ -263,7 +263,6 @@ class ShopContainer extends Component{
 
         <Switch>
 
-
         <Route path='/sneakers/:id' render = {(props) =>
           {
             const id = props.match.params.id;
@@ -298,10 +297,6 @@ class ShopContainer extends Component{
 
             />
           }}/>
-
-
-
-
 
           <Route path="/men" render={(props)=> {
             // from sneakers, select all the sneakers that have men department,
@@ -342,9 +337,12 @@ class ShopContainer extends Component{
             />
           }} />
 
-
-
           </Switch>
+
+          <footer className="footer">
+            <h1>Its me the footer</h1>
+          </footer>
+
           </Fragment>
           </Router>
         )
