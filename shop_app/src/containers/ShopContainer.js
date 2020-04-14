@@ -19,6 +19,8 @@ import MyDetails from '../components/mydetails/MyDetails';
 import Navbar from 'react-bootstrap/Navbar';
 
 
+
+
 class ShopContainer extends Component{
   constructor(props){
     super(props);
