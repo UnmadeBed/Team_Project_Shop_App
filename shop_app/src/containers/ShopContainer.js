@@ -10,11 +10,11 @@ import Sale from "../components/Sale";
 import LoginForm from '../components/login/LoginForm';
 import SneakerList from '../components/sneakers/SneakerList';
 import SneakerDetail from '../components/sneakers/SneakerDetail';
-import Moment from 'react-moment';
-import 'moment-timezone';
 import Filter from "./Filter";
 import Basket from "../components/basket/Basket.js";
 import MyDetails from '../components/mydetails/MyDetails';
+
+
 
 
 class ShopContainer extends Component{
@@ -257,6 +257,7 @@ class ShopContainer extends Component{
     render(){
 
       return(
+
         <Router>
         <Fragment>
         <NavBar name={this.state.loginName}

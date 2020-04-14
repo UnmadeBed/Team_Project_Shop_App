@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import StripeCheckout from 'react-stripe-checkout';
 
 
 
@@ -7,6 +8,9 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 class Basket extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      price:0
+    }
 
 
 
@@ -28,10 +32,30 @@ class Basket extends Component {
       )
     })
 
+    function handleToken(token, addresses) {
+      console.log({token, addresses});
+    }
+
+    const price = 0
+    const item = this.props.basket.map((sneaker) => {
+      return this.state.price += sneaker.retailPrice
+    })
+    console.log(this.state.price);
     return(
+
       <Fragment>
         <button onClick={this.props.handlePurchase}>Buy Now</button>
         {itemNodes}
+        <button onClick={this.props.handlePurchase}>
+        <StripeCheckout
+          stripeKey="pk_test_E2FAuOZosm0GMANWGyZ6QiIN00ztQJoxNN"
+          token={handleToken}
+          billingAddress
+          shippingAddress
+          amount={this.state.price * 100}
+          onClick={this.props.handlePurchase}
+        />
+        </button>
       </Fragment>
 
     )
