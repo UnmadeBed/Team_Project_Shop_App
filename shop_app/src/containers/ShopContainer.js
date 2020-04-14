@@ -10,8 +10,6 @@ import Sale from "../components/Sale";
 import LoginForm from '../components/login/LoginForm';
 import SneakerList from '../components/sneakers/SneakerList';
 import SneakerDetail from '../components/sneakers/SneakerDetail';
-import Moment from 'react-moment';
-import 'moment-timezone';
 import Filter from "./Filter";
 import Basket from "../components/basket/Basket.js";
 import MyDetails from '../components/mydetails/MyDetails';
@@ -143,7 +141,7 @@ class ShopContainer extends Component{
       for (let i=0; i<filterBoxes.length; i++) {
         filterBoxes[i].selectedIndex = 0
       }
-      window.location = "/"
+    
     }
 
 
@@ -153,7 +151,7 @@ class ShopContainer extends Component{
       this.setState({loginName: even})
     }
     handleLoginCustomer(even){
-      console.log(even);
+
       this.setState({loggedInCustomer:even})
     }
 
