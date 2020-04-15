@@ -12,10 +12,16 @@ class Basket extends Component {
       price:0
     }
 
-
+this.handleClean =this.handleClean.bind(this)
 
   }
 
+
+handleClean(){
+  this.setState({
+    price: 0
+  })
+}
   render() {
     // render a list of selected items from basket array
     // each will have a small photo, name model and price
@@ -54,6 +60,7 @@ class Basket extends Component {
           shippingAddress
           amount={this.state.price * 100}
           onClick={this.props.handlePurchase}
+          onClick={this.handleClean}
         />
         </button>
       </Fragment>
