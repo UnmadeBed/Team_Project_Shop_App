@@ -10,7 +10,11 @@ const Sneaker = (props) => {
 
   return (
     <div className="sneaker-item">
-      <img src={props.sneaker.imgLink} alt="image" width="200" height="200"/>
+
+      <div className="sneaker-img-wrapper">
+      <img className="sneaker-img" src={props.sneaker.imgLink} alt="image" width="200" height="200"/>
+      </div>
+
       <h3 className="sneaker-item-text-primary"> {props.sneaker.brand}</h3>
       <h5 className="sneaker-item-text-primary"> {props.sneaker.model}</h5>
 

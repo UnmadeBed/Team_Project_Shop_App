@@ -54,14 +54,18 @@ handleSubmit(event){
 
       <div className="login-form">
 
-      <form onSubmit={this.handleSubmit}>
+      <form className="login-box" onSubmit={this.handleSubmit}>
       <h2>User Name</h2>
       <input type="text" placeholder="user name" name="userName" onChange={this.handleChange} value={this.state.userName}/>
 
       <h2>Password</h2>
       <input type="text" placeholder="password" name="password" onChange={this.handleChange} value={this.state.password}/>
 
-      <button className="filter-clear-filter" type="submit">Login</button>
+      <div className="button-wrapper">
+        <button className="login-button" type="submit">Login</button>
+      </div>
+
+
       </form>
 
       <h1>{this.state.customer.userName}</h1>

@@ -14,15 +14,17 @@ class MyDetails extends Component{
 
 
     return(
-      <div>
+
+      <div className="details-box">
       {
         Object.keys(orders).map(order_id => {
           return (
             <div>
 
-            <div>{order_id}
-
+            <div>
+             <h3>Order id: {order_id}</h3>
             </div>
+
             {
               orders[order_id].sneakers.map(sneaker => {
                 return(

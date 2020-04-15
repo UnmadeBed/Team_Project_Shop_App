@@ -46,11 +46,10 @@ handleClean(){
     const item = this.props.basket.map((sneaker) => {
       return this.state.price += sneaker.retailPrice
     })
-    console.log(this.state.price);
+
     return(
 
-      <Fragment>
-        <button onClick={this.props.handlePurchase}>Buy Now</button>
+      <div className="basket">
         {itemNodes}
         <button onClick={this.props.handlePurchase}>
         <StripeCheckout
@@ -63,7 +62,8 @@ handleClean(){
           onClick={this.handleClean}
         />
         </button>
-      </Fragment>
+        <button className="filter-clear-filter" onClick={this.props.handleClearBasket}>Clear Basket</button>
+      </div>
 
     )
   }
