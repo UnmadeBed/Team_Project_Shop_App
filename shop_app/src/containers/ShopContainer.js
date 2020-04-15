@@ -228,6 +228,14 @@ class ShopContainer extends Component{
           orders: newArray
         })
 
+        const email = {
+           "name": "Turbo",
+          "email": "fakeShop@gmail.com",
+          "feedback": "This is your email confirmation. Your purchase is completed."
+          }
+
+        request.post("/api/feedback", email);
+
         this.setState({
           basket:[]
         })
