@@ -7,10 +7,10 @@ const SneakerList = (props) => {
 
   const allItems = props.sneakers.map((sneaker, index) =>{
     return(
-          <li key = {index} className="component-item">
-          <div className="component">
+          <li key = {index} className="component-box">
+
             <Sneaker sneaker = {sneaker}/>
-          </div>
+
           </li>
     )
   })
@@ -21,10 +21,10 @@ const SneakerList = (props) => {
 
     filteredItems = props.filteredSneakers.map((sneaker, index) =>{
     return(
-          <li key = {index} className="component-item">
-          <div className="component">
+          <li key = {index} className="component-box">
+
             <Sneaker sneaker = {sneaker}/>
-          </div>
+
           </li>
     )
     })

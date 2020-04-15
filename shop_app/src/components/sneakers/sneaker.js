@@ -10,12 +10,19 @@ const Sneaker = (props) => {
 
   return (
     <div className="sneaker-item">
-      <img src={props.sneaker.imgLink} alt="image" width="150" height="150"/>
-      <h3>Brand: {props.sneaker.brand}</h3>
-      <h5>Model: {props.sneaker.model}</h5>
-      <h5>Size: {props.sneaker.size}</h5>
-      <h5>Price: £{props.sneaker.retailPrice}</h5>
-      <Link to={url}>Details</Link>
+      <img src={props.sneaker.imgLink} alt="image" width="200" height="200"/>
+      <h3 className="sneaker-item-text-primary"> {props.sneaker.brand}</h3>
+      <h5 className="sneaker-item-text-primary"> {props.sneaker.model}</h5>
+
+
+      <h5 className="sneaker-item-text-secondary">Size: {props.sneaker.size}</h5>
+      <h5 className="sneaker-item-text-secondary">Price: £{props.sneaker.retailPrice}</h5>
+
+
+      <Link to={url}>
+        <img className="info-button" src="https://img.icons8.com/ios-filled/64/000000/info.png"/>
+      </Link>
+
     </div>
   )
 

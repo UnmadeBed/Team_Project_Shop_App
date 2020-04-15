@@ -13,16 +13,14 @@ class SneakerDetail extends Component {
     return (
       <div className='sneaker-details'>
 
-
         <div className='sneaker-details-img-container'>
           <img className='sneaker-details-img' src={this.props.sneaker.imgLink} alt="image"/>
         </div>
 
         <div className='details-box'>
-          <h1>Details</h1>
           <div className="details-box-text">
-          <h1>Brand: {this.props.sneaker.brand}</h1>
-          <h1>Model: {this.props.sneaker.model}</h1>
+          <h1> {this.props.sneaker.brand}</h1>
+          <h1> {this.props.sneaker.model}</h1>
           <h3>Size: {this.props.sneaker.size}</h3>
           <h3>Price: £{this.props.sneaker.retailPrice}</h3>
           </div>

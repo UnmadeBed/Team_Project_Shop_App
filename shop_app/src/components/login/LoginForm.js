@@ -52,7 +52,7 @@ handleSubmit(event){
 
     return(
 
-      <div>
+      <div className="login-form">
 
       <form onSubmit={this.handleSubmit}>
       <h2>User Name</h2>
@@ -60,7 +60,8 @@ handleSubmit(event){
 
       <h2>Password</h2>
       <input type="text" placeholder="password" name="password" onChange={this.handleChange} value={this.state.password}/>
-      <button type="submit">Login</button>
+
+      <button className="filter-clear-filter" type="submit">Login</button>
       </form>
 
       <h1>{this.state.customer.userName}</h1>

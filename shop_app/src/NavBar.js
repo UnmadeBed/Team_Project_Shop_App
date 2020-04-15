@@ -65,6 +65,9 @@ class NavBar extends Component {
       return(
 
         <Navbar sticky="top" className="navigation-bar" bg="light" expand="lg">
+
+        <Navbar.Brand className="nav-brand" as={Link} to="/sneakers">PLANET SNEAKERS</Navbar.Brand>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
